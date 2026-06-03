@@ -51,7 +51,6 @@ pub mod solution {
 
         }
 
-
         pub fn read (&mut self) -> Option <T> { 
 
             if self.size == 0{
@@ -96,8 +95,18 @@ pub mod solution {
             self.array[self.head] = Some(item);
 
          }
-        // R i o r g a n i z z a il buffer ren de nd ol o contiguo in memoria
-        //pub fn make_conti g u o u s (& mut self ) { todo !() }
+        
+        // Riorganizza il buffer rendendolo contiguo in memoria
+        pub fn make_contiguous (& mut self ) {
+            let barray = self.array.clone();
+            for i in 0..self.capacity{
+                   
+                    self.array[i] = barray[(self.head + i) % self.capacity].clone();
+
+            }
+            self.head = 0;
+            self.tail=self.size;
+        }
     }
 
 

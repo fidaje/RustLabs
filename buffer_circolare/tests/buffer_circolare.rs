@@ -128,3 +128,31 @@ pub fn test_overwrite() {
     } 
 
 }
+
+#[test]
+pub fn test_make_contigous(){
+    let mut a = CircularBuffer::<i32>::new(5);
+    let _ = a.write(1);
+    let _ = a.write(2);
+    let _ = a.write(3);
+    let _ = a.write(4);
+    let _ = a.read();
+    let _ = a.read();
+    let _ = a.write(5);
+    let _ = a.write(1);
+    let _ = a.read();
+
+    println!("{:?}", a.array);
+
+    let mut b = CircularBuffer::<i32>::new(5);
+    //let _ = b.write(3);
+    let _ = b.write(4);
+    let _ = b.write(5);
+    let _ = b.write(1);
+
+    a.make_contiguous();
+
+    assert_eq!(a.array,b.array);
+    assert_eq!(a.tail, a.size);
+    assert_eq!(a.head, 0);
+}
