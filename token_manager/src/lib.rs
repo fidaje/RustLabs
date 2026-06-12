@@ -166,3 +166,9 @@ fn a_slow_acquirer_causes_other_threads_to_wait() {
     // Gli altri 4 thread hanno atteso la Condvar.
     assert_eq!(call_count.load(Ordering::SeqCst), 1);
 }
+
+
+fn main() {
+    let s = String::from("Ciao");
+    let b: &str = &s;
+}
